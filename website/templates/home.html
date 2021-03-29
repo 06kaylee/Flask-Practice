@@ -1,23 +1,28 @@
+<!--Extends puts everything in base.html in this HTML file-->
 {% extends "base.html" %} 
 {% block title %}Home{% endblock %} 
-{% block content
-    %}
+{% block content%}
+
+    <!--Prints out the notes that the user has-->
     <h1 align="center">Notes</h1>
     <ul class="list-group list-group-flush" id="notes">
       {% for note in user.notes %}
       <li class="list-group-item">
         {{ note.data }}
+        <!--Button below calls the javascript method deleteNote which sends a request to the backend to delete the note, referencing it by the id of the note -->
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
           <span aria-hidden="true">&times;</span>
         </button>
       </li>
       {% endfor %}
     </ul>
+    <!--Form to enter the note that you want to display to the page-->
     <form method="POST">
       <textarea name="note" id="note" class="form-control"></textarea>
-      <br />
+      <br>
       <div align="center">
         <button type="submit" class="btn btn-primary">Add Note</button>
       </div>
     </form>
+
 {% endblock %}
